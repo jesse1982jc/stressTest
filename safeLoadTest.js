@@ -12,12 +12,29 @@ export const options = {
 };
 
 export default function () {
-  const res = http.post("http://192.168.0.157:9986/api/user/login", {
-    email: "ceq19336@romog.com",
-    password: "abcd1234",
-  }); // 寫你要測的 URL
+  // // ✅ 這裡包成 {"user": {...}}，並轉成 JSON
+  // const payload = JSON.stringify({
+  //   user: { email: "jcjchuhu2@gmail.com", password: "abcd1234" },
+  // });
+
+  // // ✅ 設定 headers，告訴伺服器這是 JSON
+  // const params = {
+  //   Headers: {
+  //     "content-type": "application/json",
+  //   },
+  // };
+
+  const res = http.post("https://api.hiskio.com/v2/auth/login", {
+    account: "jcjchuhu",
+    password: "nmbooks4801",
+    confirm: true,
+  });
+
+  // console.log("Response:", res.status, res.body);
+
   check(res, {
     "status is 200": (r) => r.status === 200,
   });
+
   sleep(4); // 每個虛擬使用者等 1 秒再下一次請求
 }

@@ -5,14 +5,14 @@ export const options = {
   stages: [
     { duration: "30s", target: 50 }, // 先漸增到 50
     { duration: "30s", target: 200 }, // 再增加到 200
-    { duration: "30s", target: 1000 }, // 最後增加到 1000
+    { duration: "30s", target: 500 }, // 最後增加到 1000
   ],
   // vus: 10, // 模擬 10 個使用者同時上線
   // duration: "30s", // 測試持續 30 秒
 };
 
 export default function () {
-  const res = http.get("http://192.168.0.153:9080/"); // 寫你要測的 URL
+  const res = http.get("https://conduit.bondaracademy.com/"); // 寫你要測的 URL
   check(res, {
     "status is 200": (r) => r.status === 200,
   });

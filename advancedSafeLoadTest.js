@@ -13,15 +13,16 @@ export const options = {
 // 模擬不同使用者行為
 export default function () {
   group("首頁操作", function () {
-    const res = http.get("http://192.168.0.153:9080/");
+    const res = http.get("https://hiskio.com/");
     check(res, { "home status 200": (r) => r.status === 200 });
     sleep(Math.random() * 2 + 1); // 隨機停 1~3 秒
   });
 
   group("登入操作", function () {
-    const res = http.post("http://192.168.0.157:9986/api/user/login", {
-      email: "ceq19336@romog.com",
-      password: "abcd1234",
+    const res = http.post("https://api.hiskio.com/v2/auth/login", {
+      account: "jcjchuhu",
+      password: "nmbooks4801",
+      confirm: true,
     });
     check(res, { "login status 200": (r) => r.status === 200 });
     sleep(Math.random() * 2 + 1);
@@ -29,7 +30,7 @@ export default function () {
 
   group("查詢資料操作", function () {
     const res = http.get(
-      "http://192.168.0.157:9986/api/course/getlist?keyword&tag&status=1&type=0"
+      "https://api.hiskio.com/v2/courses?word&status=ALL&tags&type=attendance&professions=35&course_type=ALL&promo&page=1&limit=20"
     );
     check(res, { "data status 200": (r) => r.status === 200 });
     sleep(Math.random() * 2 + 1);
